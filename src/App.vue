@@ -2,8 +2,11 @@
     <v-app>
         <SideMenu :drawer="drawer" :meteo="dataMeteo" ></SideMenu>
         <v-app-bar fixed clipped-left color="primary" class="elevation-2">
-            <v-app-bar-nav-icon @click="drawer = !drawer" ><v-icon class="white--text">menu</v-icon></v-app-bar-nav-icon>
-            <span class="white--text">Vuetify News</span>
+            <div class="div-nav">
+                <v-app-bar-nav-icon @click="drawer = !drawer" class="float-right" ><v-icon class="fas fa-cloud-sun white--text"></v-icon></v-app-bar-nav-icon>
+                <span class="white--text float-left">Vuetify News</span>
+            </div>
+
         </v-app-bar>
 
 
@@ -19,7 +22,7 @@
                     <div class="white--text ml-3">
                         Realizzato con
                         <v-icon class="red--text">favorite</v-icon>
-                        e <a class="white--text" href="https://vuetifyjs.com" target="_blank">Vuetify</a>. Progetto basato sull'opera di <a class="white--text" href="https://github.com/rachidsakara"
+                        e <a class="white--text" href="https://vuetifyjs.com" target="_blank">Vuetify</a>. Basato sul progetto di <a class="white--text" href="https://github.com/rachidsakara"
                         target="_blank">Rachid Sakara</a>
                     </div>
                 </v-flex>
@@ -96,5 +99,9 @@ export default {
 <style>
     .margin-top {
         margin-top: 50px;
+    }
+    .div-nav {
+        width: 100vw;
+        line-height: 50px;
     }
 </style>

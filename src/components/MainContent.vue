@@ -1,8 +1,8 @@
 <template>
     <v-layout row="row" wrap="wrap" align-center="align-center">
-        <v-flex xs8="xs8" offset-md2="offset-md2">
+        <v-flex lg8="lg8" offset-lg2="offset-lg2" align-center="align-center">
             <div v-for="article in articles" :key="article.title">
-                <v-card class="my-3">
+                <v-card class="my-3 card-align">
                     <v-img height="350px" :src="article.urlToImage"></v-img>
                     <v-container fill-height="fill-height" fluid="fluid">
                         <v-layout>
@@ -15,8 +15,8 @@
                 <v-card-text>
                     {{ article.description }}
                 </v-card-text>
-                <v-card-actions>
-                    <v-chip small="small" color="secondary" class="white--text">
+                <v-card-actions class="d-flex flex-wrap justify-center">
+                    <v-chip xs12="xs12" small="small" color="secondary" class="white--text">
                         {{article.source.name}}
                     </v-chip>
                     <v-spacer></v-spacer>
@@ -33,7 +33,7 @@
                             <v-icon small="small">fa-linkedin</v-icon>
                     </v-btn>
                     <v-spacer></v-spacer>
-                    <v-btn small="small" replace="replace" color="info" :href="article.url" target="_blank">Leggi l'Articolo Completo</v-btn>
+                    <v-btn xs12="xs12" small="small" replace="replace" color="info" :href="article.url" target="_blank">Articolo Completo</v-btn>
                 </v-card-actions>
                 </v-card>
             </div>
@@ -48,3 +48,8 @@ export default {
   },
 }
 </script>
+<style>
+    .card-align {
+        margin: 0 auto;
+    }
+</style>

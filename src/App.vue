@@ -1,14 +1,12 @@
 <template>
     <v-app>
-        <SideMenu :drawer="drawer" :meteo="dataMeteo" ></SideMenu>
+        <SideMenu :drawer="drawer"></SideMenu>
         <v-app-bar fixed clipped-left color="primary" class="elevation-2">
             <div class="div-nav">
                 <v-app-bar-nav-icon @click="drawer = !drawer" class="float-right" ><v-icon class="fas fa-cloud-sun white--text"></v-icon></v-app-bar-nav-icon>
                 <span class="white--text float-left">Vuetify News</span>
             </div>
-
         </v-app-bar>
-
 
         <v-main class="margin-top">
             <v-container fluid>
@@ -20,7 +18,7 @@
             <v-layout row wrap align-center>
                 <v-flex xs12>
                     <div class="white--text ml-3">
-                        Realizzato con
+                        Autore: <a class="white--text" href="https://github.com/michael-molin">Michael Molin</a>. Realizzato con
                         <v-icon class="red--text">favorite</v-icon>
                         e <a class="white--text" href="https://vuetifyjs.com" target="_blank">Vuetify</a>. Basato sul progetto di <a class="white--text" href="https://github.com/rachidsakara"
                         target="_blank">Rachid Sakara</a>
@@ -48,47 +46,18 @@ export default {
       drawer: false, // false = Vuetify automatically "do the right thing" to show/hide the drawer
       api_key:'9919924d5249414fb13e3a0e20ee893b', // Your API Key go here
       articles: [],
-      dataMeteo: {},
       errors: [],
     }
   },
   created () {
     axios.get('https://newsapi.org/v2/top-headlines?country=it&apiKey='+this.api_key)
       .then(response => {
-        //this.articles = response.data.articles
         this.articles = response.data.articles
-        console.log('data:')
-        console.log(response.data.articles) // This will give you access to the full object
       })
       .catch(e => {
         this.errors.push(e)
       })
-      axios({
-        "method": "GET",
-        "url": "https://community-open-weather-map.p.rapidapi.com/weather",
-        "headers": {
-              "content-type": "application/octet-stream",
-              "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-              "x-rapidapi-key": "c8b7cc50c3msh9fe9e3f2a455018p1ec642jsnbd51f6bc37d2",
-              "useQueryString": true,
-              'Access-Control-Allow-Headers': 'application/json'
-        },
-        "params": {
-              "units": "Metric",
-              "lang": 'it',
-              "q": 'Venezia'
-        },
-        contentType: 'application/json',
-        dataType: "jsonp",
-        responseType: 'application/json'
-        }).then((response) => { // LA RISPOSTA DALL API
-           console.log(response.data);
-           response.data.iconPrefix = "http://openweathermap.org/img/wn/"; // AGGIUNGO PREFIX
-           response.data.iconSuffix= "@2x.png" // AGGIUNGO SUFFIX
-           this.dataMeteo = response.data;
-        }).catch((error) => {
-           console.log(error);
-       })
+
   },
   methods: {
 
